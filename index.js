@@ -65,11 +65,36 @@ console.log(availableBooks);
 //  con gli availableBooks,
 //  ciascuno con il prezzo scontato del 20% (mantieni lo stesso formato e arrotonda al centesimo)
 const discountedBooks = availableBooks.map((b) => ({
-  ...b, price: (parseFloat(b.price) * 0.8).toFixed(2) + "€",
+  ...b,
+  price: (parseFloat(b.price) * 0.8).toFixed(2) + "€",
 }));
-console.log(discountedBooks)
+console.log(discountedBooks);
 
 //Salva in una variabile (fullPricedBook)
 //  il primo elemento di discountedBooks che ha un prezzo intero (senza centesimi).
-const fullPricedBook = discountedBooks.find(b => b.price.match(/^[0-9]+\.00€$/));
+const fullPricedBook = discountedBooks.find((b) =>
+  b.price.match(/^[0-9]+\.00€$/)
+);
 console.log(fullPricedBook);
+
+// 3 snack
+//Creare un array (authors) che contiene gli autori dei libri.
+const authors = books.map((b) => b.author);
+console.log(authors);
+
+//Crea una variabile booleana (areAuthorsAdults) per verificare se gli autori sono tutti maggiorenni.
+const areAuthorsAdults = authors.every((a) => a.age >= 18);
+console.log(areAuthorsAdults);
+
+//Ordina l’array authors in base all’età, senza creare un nuovo array.
+authors.sort((a, b) => a.age - b.age);
+console.log(authors);
+// 4 snack
+/* Snack 4 - Calcola l’età media
+Creare un array (ages) che contiene le età degli autori dei libri.
+Calcola la somma delle età (agesSum) usando reduce.
+Stampa in console l’età media degli autori dei libri. */
+const ages = books.map((b) => b.author.age);
+const agesSum = ages.reduce((acc, age) => acc + age, 0);
+const agesAvg = (agesSum / ages.length).toFixed(2);
+console.log("Età media autori:", agesAvg);
